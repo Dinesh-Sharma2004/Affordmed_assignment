@@ -15,6 +15,10 @@ from app.models.notification_model import db
 db.init_app(app)
 with app.app_context():
     db.create_all()
+
+from app.routes.notificatioin_routes import notification_bp
+app.register_blueprint(notification_bp)
+
 @app.route('/')
 def home():
     return {"message":"Backend Running"}
