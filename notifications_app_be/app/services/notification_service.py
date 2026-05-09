@@ -23,6 +23,8 @@ class NotificationService:
     @staticmethod
     def delete_notification(notification_id):
         notification=Notification.query.get(notification_id)
+        if not notification:
+            return None
         db.session.delete(notification)
         db.session.commit()
         return notification
