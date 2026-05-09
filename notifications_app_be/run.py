@@ -9,6 +9,12 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from logging_middleware.logging_config import setup_logging
 setup_logging(app)
 
+
+from app.models.notification_model import db
+
+db.init_app(app)
+with app.app_context():
+    db.create_all()
 @app.route('/')
 def home():
     return {"message":"Backend Running"}
